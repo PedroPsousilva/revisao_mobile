@@ -10,8 +10,8 @@ export default function Posts() {
 
   async function getPosts() {
     try {
-      const posts = await api.get('/posts');
-      const users = await api.get('/users');
+      const posts = await api.getPosts();
+      const users = await api.getUsers();
 
       setPosts(posts.data);
       setUsers(users.data);

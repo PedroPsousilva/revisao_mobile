@@ -6,16 +6,15 @@ import CardTodo from '../components/CardTodo';
 export default function Todos() {
   const [todos, setTodos] = useState([]);
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   // Função separada para carregar os dados
   async function getTodos() {
     try {
-      const todosRes = await api.get('/todos');
-      const usersRes = await api.get('/users');
+      const todos = await api.getTodos();
+      const users = await api.getUsers();
 
-      setTodos(todosRes.data);
-      setUsers(usersRes.data);
+      setTodos(todos.data);
+      setUsers(users.data);
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
       Alert.alert('Erro', 'Não foi possível carregar os dados de tarefas');
@@ -44,14 +43,6 @@ export default function Todos() {
     return user ? user.name : 'Desconhecido';
   }
 
-  // Loading enquanto os dados são carregados
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <ActivityIndicator size="large" color="#000" />
-      </View>
-    );
-  }
 
   // Renderização da lista
   return (

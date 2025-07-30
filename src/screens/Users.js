@@ -10,7 +10,7 @@ export default function Users() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await api.get('/users');
+        const response = await api.getUsers();
         setUsers(response.data);
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
